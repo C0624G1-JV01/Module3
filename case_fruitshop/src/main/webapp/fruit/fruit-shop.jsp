@@ -113,8 +113,8 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Sản Phẩm</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <c:forEach items="${categories}" var="categories">
-                                <li><a class="dropdown-item" href="#">${categories.name}</a></li>
+                            <c:forEach items="${categories}" var="category">
+                                <li><a class="dropdown-item" href="#">${category.name}</a></li>
                             </c:forEach>
                         </ul>
                     </li>
@@ -169,7 +169,12 @@
                         <p class="text-danger"><c:out value="${product.price}"/> VND</p>
                         <div class="actions">
                             <a href="fruit-shop?action=search&id=${product.product_id}" class="btn btn-info">Xem</a>
-                            <a href="fruit-shop?action=add&id=${product.product_id}" class="btn btn-success" onclick="return confirm('Bạn có chắc chắn muốn mua sản phẩm này?');">Mua</a>
+                            <form action="/fruit-shop" method="post" style="display:inline;">
+                                <input type="hidden" name="action" value="addToCart">
+                                <input type="hidden" name="id" value="${product.product_id}">
+                                <input type="number" name="quantity" value="1" min="1" style="width: 60px;">
+                                <button type="submit" class="btn btn-success" onclick="return confirm('Bạn có chắc chắn muốn mua sản phẩm này?');">Mua</button>
+                            </form>
                         </div>
                     </div>
                 </div>

@@ -13,6 +13,7 @@
     body {
       font-family: Arial, sans-serif;
       background-color: #f9f9f9;
+      padding-top: 160px;
     }
     .logo {
       height: 80px;
@@ -62,15 +63,6 @@
       background-color: #d4edda;
       color: #155724;
     }
-    .custom-carousel {
-      max-width: 100%;
-      margin: auto;
-    }
-    .carousel img {
-      max-height: 400px;
-      width: 100%;
-      object-fit: cover;
-    }
     .navbar {
       position: fixed;
       top: 0;
@@ -80,9 +72,6 @@
       background-color: #ffffff;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
-    body {
-      padding-top: 160px;
-    }
     .container {
       max-width: 100%;
       padding: 0 15px;
@@ -90,12 +79,18 @@
     footer {
       background-color: #ff7c2a;
       color: white;
+      text-align: center;
+      padding: 20px 0;
+    }
+    .contact-links a {
+      margin: 0 10px;
+      color: white;
     }
   </style>
 </head>
 <body>
-<header style="background-color: #ffd2ab;">
-  <div class="container d-flex align-items-center justify-content-between fixed-top" style="top: 0;">
+<header>
+  <div class="container d-flex align-items-center justify-content-between fixed-top" style="top: 0; background-color: #ffd2ab;">
     <img src="https://free.vector6.com/wp-content/uploads/2020/07/KhoThietKe-0000000184.jpg" alt="Logo" class="logo">
     <form class="d-flex ms-3" action="/fruit-shop" method="get">
       <input class="form-control me-2" type="search" name="keyword" placeholder="Tìm sản phẩm" aria-label="Search">
@@ -113,8 +108,8 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Sản Phẩm</a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <c:forEach items="${categories}" var="categories">
-                <li><a class="dropdown-item" href="#">${categories.name}</a></li>
+              <c:forEach items="${categories}" var="category">
+                <li><a class="dropdown-item" href="#">${category.name}</a></li>
               </c:forEach>
             </ul>
           </li>
@@ -162,7 +157,7 @@
     <c:forEach var="product" items="${products}">
       <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
         <div class="card shadow-sm">
-          <img src="${product.image}" alt="${product.name}" class="card-img-top" style="max-height: 200px;">
+          <img src="${product.image}" alt="${product.name}" class="card-img-top">
           <div class="card-body">
             <h5 class="card-title"><c:out value="${product.name}"/></h5>
             <p class="card-text"><c:out value="${product.description}"/></p>
@@ -178,23 +173,23 @@
   </div>
 </div>
 
-<footer class="text-center text-white" style="background-color: #ff7c2a;">
-  <div class="container p-4">
+<footer>
+  <div class="container">
     <h5>Liên Hệ Chúng Tôi</h5>
     <p>Email: contact@fruitshop.com</p>
     <p>Điện thoại: 0123 456 789</p>
     <p>Địa chỉ: 123 Đường Hoa Quả, TP. HCM</p>
-  </div>
-  <div class="contact-links">
-    <a href="mailto:contact@fruitshop.com" class="contact-item">
-      <i class="fas fa-envelope"></i>
-    </a>
-    <a href="tel:0123456789" class="contact-item">
-      <i class="fas fa-phone"></i>
-    </a>
-    <a href="https://www.facebook.com/messages/e2ee/t/7946518635382626?locale=vi_VN" class="contact-item">
-      <i class="fas fa-comment-dots"></i>
-    </a>
+    <div class="contact-links">
+      <a href="mailto:contact@fruitshop.com" class="contact-item">
+        <i class="fas fa-envelope"></i>
+      </a>
+      <a href="tel:0123456789" class="contact-item">
+        <i class="fas fa-phone"></i>
+      </a>
+      <a href="https://www.facebook.com/messages/e2ee/t/7946518635382626?locale=vi_VN" class="contact-item">
+        <i class="fas fa-comment-dots"></i>
+      </a>
+    </div>
   </div>
 </footer>
 

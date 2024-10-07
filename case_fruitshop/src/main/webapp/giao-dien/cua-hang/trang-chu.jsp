@@ -23,7 +23,7 @@
         </form>
 
         <div class="user-cart ms-3">
-            <a href="/Fruitshop?action=viewCart" class="btn btn-warning position-relative">
+            <a href="/fruitshop?action=viewCart" class="btn btn-warning position-relative">
                 <i class="fas fa-shopping-cart"></i> Giỏ Hàng
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     <c:out value="${sessionScope.cartSize != null ? sessionScope.cartSize : 0}"/>

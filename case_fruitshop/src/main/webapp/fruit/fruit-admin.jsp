@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: hieu
-  Date: 10/7/2024
-  Time: 11:17 AM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -34,12 +27,15 @@
             padding: 10px;
             margin-right: 10px;
             width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
         }
         input[type="submit"] {
             padding: 10px 15px;
             background-color: #28a745;
             color: white;
             border: none;
+            border-radius: 4px;
             cursor: pointer;
         }
         input[type="submit"]:hover {
@@ -80,13 +76,16 @@
             margin-right: 10px;
             color: #007bff;
         }
+        .actions a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
 <h1>Danh sách sản phẩm</h1>
 <form method="get" action="fruit-admin">
     <input type="text" name="keyword" placeholder="Tìm kiếm sản phẩm...">
-    <input type="submit" name="action" value="search">
+    <input type="submit" name="action" value="Tìm kiếm">
 </form>
 
 <a href="fruit-admin?action=create">Thêm sản phẩm mới</a>
@@ -110,7 +109,7 @@
             <td><c:out value="${product.product_id}"/></td>
             <td><c:out value="${product.name}"/></td>
             <td><c:out value="${product.description}"/></td>
-            <td><c:out value="${product.price}"/>.VNĐ</td>
+            <td><c:out value="${product.price}"/> VNĐ</td>
             <td><img src="${product.image}" alt="${product.name}" style="max-width: 100px; max-height: 100px;"></td>
             <td class="actions">
                 <a href="/fruit-admin?action=edit&id=${product.product_id}">Sửa</a>
@@ -118,7 +117,7 @@
             </td>
         </tr>
     </c:forEach>
-    <a href="http://localhost:8080/">Trở về trang chủ</a>
 </table>
+<a href="http://localhost:8080/">Trở về trang chủ</a>
 </body>
 </html>
