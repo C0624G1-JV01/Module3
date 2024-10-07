@@ -48,16 +48,28 @@ public class UserRepository implements IUserRepository {
     @Override
     public int save(User user) {
         String query = "INSERT INTO user (name, email, phone, role_id) VALUES (?, ?, ?, ?)";
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
+        try (PreparedStatement statement = connection.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS)) {
+            // Thiết lập giá trị cho các tham số
             statement.setString(1, user.getName());
             statement.setString(2, user.getEmail());
             statement.setString(3, user.getPhone());
             statement.setInt(4, user.getRole_id());
-            return statement.executeUpdate(); // Trả về số bản ghi đã thêm
+
+            // Thực hiện câu lệnh INSERT
+            int affectedRows = statement.executeUpdate();
+
+            // Nếu có dòng được chèn
+            if (affectedRows > 0) {
+                try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        return generatedKeys.getInt(1);
+                    }
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
-            return 0;
         }
+        return 0;
     }
 
     @Override

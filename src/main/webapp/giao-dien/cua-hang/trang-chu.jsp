@@ -21,6 +21,16 @@
             <input class="form-control me-2" type="search" placeholder="Tìm sản phẩm" aria-label="Search">
             <button class="btn btn-outline-light" style="color: lavenderblush; background: #ff7c2a;" type="submit">Tìm</button>
         </form>
+
+        <div class="user-cart ms-3">
+            <a href="/Fruitshop?action=viewCart" class="btn btn-warning position-relative">
+                <i class="fas fa-shopping-cart"></i> Giỏ Hàng
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    <c:out value="${sessionScope.cartSize != null ? sessionScope.cartSize : 0}"/>
+                </span>
+            </a>
+        </div>
+
         <div class="user-options ms-3">
             <c:if test="${not empty sessionScope.currentUser}">
                 <span>Xin chào, ${sessionScope.currentUser.name}!</span>

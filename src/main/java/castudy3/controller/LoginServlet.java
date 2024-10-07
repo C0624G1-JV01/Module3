@@ -40,25 +40,25 @@ public class LoginServlet extends HttpServlet {
                 if (session != null) {
                     session.invalidate();
                 }
-                response.sendRedirect(request.getContextPath() + "/giao-dien/cua-hang/trang-chu.jsp");
+                response.sendRedirect(request.getContextPath() + "/home");
                 break;
             case "register":
                 request.getRequestDispatcher("user/dang-ky.jsp").forward(request, response);
                 break;
             case "edit":
                 HttpSession editsession = request.getSession(false);
-                User currentUser = (editsession != null) ? (User) editsession.getAttribute("currentUser") : null; // Lấy thông tin người dùng từ session
+                User currentUser = (editsession != null) ? (User) editsession.getAttribute("currentUser") : null;
 
                 if (currentUser != null) {
                     request.setAttribute("user", currentUser);
-                    request.getRequestDispatcher("/user/sua-doi-thong-tin.jsp").forward(request, response); // Chuyển hướng đến trang sửa thông tin
+                    request.getRequestDispatcher("/user/sua-doi-thong-tin.jsp").forward(request, response);
                 } else {
-                    response.sendRedirect(request.getContextPath() + "/user/dang-nhap.jsp");
+                    response.sendRedirect(request.getContextPath() + "/home");
                 }
                 break;
 
             default:
-                response.sendRedirect(request.getContextPath() + "/giao-dien/cua-hang/trang-chu.jsp");
+                response.sendRedirect(request.getContextPath() + "/home");
                 break;
         }
     }
@@ -101,7 +101,7 @@ public class LoginServlet extends HttpServlet {
             HttpSession session = req.getSession();
             session.setAttribute("currentUser", user);
             session.setAttribute("currentAccount", account);
-            resp.sendRedirect(req.getContextPath() + "/Fruitshop?action=home");
+            resp.sendRedirect(req.getContextPath() + "/home");
         } else {
             req.setAttribute("error", "Thông tin đăng nhập không chính xác.");
             req.getRequestDispatcher("user/dang-nhap.jsp").forward(req, resp);
